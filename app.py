@@ -1,6 +1,7 @@
 import macros
 from flask import Flask, jsonify, make_response
-from OpenSSL import SSL
+# from OpenSSL import SSL
+import ssl
 from flask.ext.httpauth import HTTPBasicAuth
 auth = HTTPBasicAuth()
 
@@ -18,7 +19,6 @@ def get_password(username):
 
 @app.route('/', methods=['GET'])
 def root():
-    pass
     return make_response(jsonify({'status': 'ok'}), 200)
 
 
@@ -82,5 +82,7 @@ def not_found(error):
 
 
 if __name__ == '__main__':
-    context = ('keys/key.crt', 'keys/key.key')
+    context = ssl.SSLContext(ssl.PROTOCOL_SSLv23)
+    context.load_cert_chain('keys/key.crt', 'keys/key.key')
+    # context = ('keys/key.crt', 'keys/key.key')
     app.run(host='127.0.0.1', port=443, ssl_context=context, threaded=True, debug=True)
