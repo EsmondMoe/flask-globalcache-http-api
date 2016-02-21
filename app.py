@@ -1,7 +1,6 @@
-# import GlobalCache
 import macros
 from flask import Flask, jsonify, make_response
-# from OpenSSL import SSL
+from OpenSSL import SSL
 from flask.ext.httpauth import HTTPBasicAuth
 auth = HTTPBasicAuth()
 
@@ -83,9 +82,5 @@ def not_found(error):
 
 
 if __name__ == '__main__':
-    # context = SSL.Context(SSL.SSLv23_METHOD)
-    # context.use_privatekey_file('yourserver.key')
-    # context.use_certificate_file('yourserver.crt')
-    # app.run(ssl_context=context, debug=True)
-
-    app.run(debug=True)
+    context = ('keys/key.crt', 'keys/key.key')
+    app.run(host='127.0.0.1', port=443, ssl_context=context, threaded=True, debug=True)
