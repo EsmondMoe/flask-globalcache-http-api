@@ -17,6 +17,7 @@ def get_password(username):
 
 
 @app.route('/', methods=['GET'])
+@auth.login_required
 def root():
     return make_response(jsonify({'status': 'ok'}), 200)
 
