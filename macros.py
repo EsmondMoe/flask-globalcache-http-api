@@ -2,13 +2,12 @@
 #coding: utf-8
 
 import globalcache
-from globalcache import Receiver
 from time import sleep
 
 
 class Macros(object):
     def __init__(self):
-        self.marantz = Receiver()
+        self.marantz = globalcache.Receiver()
         self.tv = globalcache.Television()
         self.cable_box = globalcache.CableBox()
         self.tv_on = False
