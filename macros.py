@@ -3,10 +3,12 @@
 
 import globalcache
 from time import sleep
+import threading
 
 
 class Macros(object):
     def __init__(self):
+        self.thread_limiter = threading.BoundedSemaphore(10)
         self.marantz = globalcache.Receiver()
         self.tv = globalcache.Television()
         self.cable_box = globalcache.CableBox()
@@ -15,6 +17,12 @@ class Macros(object):
         return
 
     def all_off(self):
+        self.thread_limiter.acquire()
+        threading.Thread(target=self._all_off).start()
+        self.thread_limiter.release()
+        return
+
+    def _all_off(self):
         self.marantz.standby()
         if self.tv_on:
             self.tv.power_on_toggle()
@@ -36,6 +44,12 @@ class Macros(object):
         return
 
     def movie_mode(self):
+        self.thread_limiter.acquire()
+        threading.Thread(target=self._movie_mode).start()
+        self.thread_limiter.release()
+        return
+
+    def _movie_mode(self):
         self.marantz.power_on()
         self.marantz.select_aux1()
         if not self.tv_on:
@@ -47,12 +61,24 @@ class Macros(object):
         return
 
     def tv_mode(self):
+        self.thread_limiter.acquire()
+        threading.Thread(target=self._tv_mode).start()
+        self.thread_limiter.release()
+        return
+
+    def _tv_mode(self):
         self.all_on()
         self.marantz.select_sat()
         self.cable_box.discovery()
         return
 
     def sonos_mode(self):
+        self.thread_limiter.acquire()
+        threading.Thread(target=self._sonos_mode).start()
+        self.thread_limiter.release()
+        return
+
+    def _sonos_mode(self):
         self.marantz.power_on()
         self.marantz.select_tv()
         return
