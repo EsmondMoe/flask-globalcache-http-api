@@ -53,6 +53,7 @@ class Macros(object):
     def _movie_mode(self):
         self.marantz.power_on()
         self.marantz.select_aux1()
+        self.marantz.volume_30()
         if not self.tv_on:
             self.tv.power_on_toggle()
             self.tv_on = True
