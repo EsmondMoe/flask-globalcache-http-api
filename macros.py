@@ -34,6 +34,7 @@ class Macros(object):
 
     def all_on(self):
         self.marantz.power_on()
+        self.marantz.volume_25()
         if not self.tv_on:
             self.tv.power_on_toggle()
             self.tv_on = True
@@ -69,7 +70,42 @@ class Macros(object):
     def _tv_mode(self):
         self.all_on()
         self.marantz.select_sat()
-        self.cable_box.discovery()
+        self.discovery()
+        return
+
+    def hgtv(self):
+        self.cable_box.ch_three()
+        self.cable_box.ch_two()
+        return
+
+    def history(self):
+        self.cable_box.ch_six()
+        self.cable_box.ch_six()
+        return
+
+    def discovery(self):
+        self.cable_box.ch_three()
+        self.cable_box.ch_nine()
+        return
+
+    def fox(self):
+        self.cable_box.ch_four()
+        self.cable_box.ch_one()
+        return
+
+    def weather(self):
+        self.cable_box.ch_four()
+        self.cable_box.ch_seven()
+        return
+
+    def amc(self):
+        self.cable_box.ch_five()
+        self.cable_box.ch_nine()
+        return
+
+    def travel(self):
+        self.cable_box.ch_six()
+        self.cable_box.ch_seven()
         return
 
     def sonos_mode(self):
@@ -80,6 +116,7 @@ class Macros(object):
 
     def _sonos_mode(self):
         self.marantz.power_on()
+        self.marantz.volume_30()
         self.marantz.select_tv()
         return
 

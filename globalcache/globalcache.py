@@ -55,6 +55,18 @@ class Receiver(AudioVisual):
         self.send_command(self.config['receiver']['volume_down'])
         return
 
+    def volume_25(self):
+        self.send_command(self.config['receiver']['volume_25'])
+        return
+
+    def volume_30(self):
+        self.send_command(self.config['receiver']['volume_30'])
+        return
+
+    def volume_35(self):
+        self.send_command(self.config['receiver']['volume_35'])
+        return
+
     def mute_toggle(self):
         self.send_command(self.config['receiver']['mute_toggle'])
         return
@@ -131,14 +143,37 @@ class CableBox(AudioVisual):
         self.send_command(self.config['cable_box']['ch_two'])
         return
 
-    def discovery(self):
-        self.send_command(self.config['cable_box']['ch_three'], self.config['cable_box']['ch_nine'])
+    def ch_three(self):
+        self.send_command(self.config['cable_box']['ch_three'])
         return
 
-    def hgtv(self):
-        self.send_command(self.config['cable_box']['ch_three'], self.config['cable_box']['ch_two'])
+    def ch_four(self):
+        self.send_command(self.config['cable_box']['ch_four'])
         return
 
+    def ch_five(self):
+        self.send_command(self.config['cable_box']['ch_five'])
+        return
+
+    def ch_six(self):
+        self.send_command(self.config['cable_box']['ch_six'])
+        return
+
+    def ch_seven(self):
+        self.send_command(self.config['cable_box']['ch_seven'])
+        return
+
+    def ch_eight(self):
+        self.send_command(self.config['cable_box']['ch_eight'])
+        return
+
+    def ch_nine(self):
+        self.send_command(self.config['cable_box']['ch_nine'])
+        return
+
+    def ch_zero(self):
+        self.send_command(self.config['cable_box']['ch_zero'])
+        return
 
 if __name__ == '__main__':
     sys.exit(0)

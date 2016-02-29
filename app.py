@@ -64,6 +64,55 @@ def tvmode():
     return make_response(jsonify({'status': 'accepted'}), 202)
 
 
+@app.route('/fox', methods=['GET'])
+@auth.login_required
+def fox():
+    macro.fox()
+    return make_response(jsonify({'status': 'accepted'}), 202)
+
+
+@app.route('/hgtv', methods=['GET'])
+@auth.login_required
+def hgtv():
+    macro.hgtv()
+    return make_response(jsonify({'status': 'accepted'}), 202)
+
+
+@app.route('/discovery', methods=['GET'])
+@auth.login_required
+def discovery():
+    macro.discovery()
+    return make_response(jsonify({'status': 'accepted'}), 202)
+
+
+@app.route('/history', methods=['GET'])
+@auth.login_required
+def history():
+    macro.history()
+    return make_response(jsonify({'status': 'accepted'}), 202)
+
+
+@app.route('/amc', methods=['GET'])
+@auth.login_required
+def amc():
+    macro.amc()
+    return make_response(jsonify({'status': 'accepted'}), 202)
+
+
+@app.route('/travel', methods=['GET'])
+@auth.login_required
+def travel():
+    macro.travel()
+    return make_response(jsonify({'status': 'accepted'}), 202)
+
+
+@app.route('/weather', methods=['GET'])
+@auth.login_required
+def weather():
+    macro.weather()
+    return make_response(jsonify({'status': 'accepted'}), 202)
+
+
 @app.route('/sonosmode', methods=['GET'])
 @auth.login_required
 def sonosmode():
